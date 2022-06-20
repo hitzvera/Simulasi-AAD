@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/course_name">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tv_course_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLength="255"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+<!--    untuk marginstart dan end tidak dimasukan karena sudah dikasi padding di parentnya-->
+    <Spinner
+        android:id="@+id/day_spinner"
+        android:layout_marginTop="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:entries="@array/day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/btn_start_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_time"
+            app:layout_constraintBottom_toBottomOf="@id/tv_start_time"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_label_start_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/start_time"
+            android:paddingTop="1dp"
+            android:textColor="@color/textPrimary"
+            app:layout_constraintTop_toTopOf="@id/btn_start_time"
+            app:layout_constraintStart_toEndOf="@+id/btn_start_time"/>
+
+        <TextView
+            android:id="@+id/tv_start_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/_08_00"
+            android:paddingTop="1dp"
+            android:textColor="@color/textPrimary"
+            app:layout_constraintTop_toBottomOf="@+id/tv_label_start_time"
+            app:layout_constraintStart_toEndOf="@+id/btn_start_time"/>
+
+        <ImageButton
+            android:id="@+id/btn_end_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_time"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_start_time"
+            app:layout_constraintStart_toEndOf="@+id/tv_label_start_time"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_label_end_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/end_time"
+            android:paddingTop="1dp"
+            android:textColor="@color/textPrimary"
+            app:layout_constraintTop_toTopOf="@id/btn_end_time"
+            app:layout_constraintStart_toEndOf="@+id/btn_end_time"/>
+
+        <TextView
+            android:id="@+id/tv_end_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/_09_00"
+            android:paddingTop="1dp"
+            android:textColor="@color/textPrimary"
+            app:layout_constraintTop_toBottomOf="@+id/tv_label_end_time"
+            app:layout_constraintStart_toEndOf="@+id/btn_end_time"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/lecturer">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ed_lecturer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLength="255"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="@string/note">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ed_note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:lines="4" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+</LinearLayout>
