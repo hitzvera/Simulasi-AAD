@@ -20,10 +20,10 @@ interface CourseDao {
     fun getCourse(id: Int): LiveData<Course>
 
     @Query("""
-        SELECT * FROM course 
-                 WHERE day = (strftime('%w', 'now') + 1)
-                 AND strftime('%H:%M', startTime) > strftime('%H:%M', 'now')
-                 ORDER BY strftime('%H:%M', startTime)
+      SELECT * FROM course 
+         WHERE day = (strftime('%w', 'now', 'localtime') + 1)
+         AND strftime('%H:%M', startTime) > strftime('%H:%M', 'now', 'localtime')
+         ORDER BY strftime('%H:%M', startTime)
     """)
     fun getTodaySchedule(): List<Course>
 
