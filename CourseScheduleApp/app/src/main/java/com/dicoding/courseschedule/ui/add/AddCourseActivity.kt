@@ -38,7 +38,8 @@ class AddCourseActivity : AppCompatActivity(), TimePickerFragment.DialogTimeList
         val spinner: Spinner = findViewById(R.id.day_spinner)
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, id: Long) {
-                day = position + 1
+                day = position
+                Log.e("CHECK", position.toString())
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {

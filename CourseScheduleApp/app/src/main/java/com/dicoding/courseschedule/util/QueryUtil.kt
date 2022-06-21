@@ -21,13 +21,13 @@ object QueryUtil {
             QueryType.CURRENT_DAY -> query = """
                  SELECT * FROM course 
                  WHERE day = (strftime('%w', 'now') + 1)
-                 AND strftime('%H:%M', startTime) > strftime('%H:%M', 'now')
+                 AND strftime('%H:%M', startTime) > strftime('%H:%M', 'now', 'localtime')
                  ORDER BY strftime('%H:%M', startTime) ASC LIMIT 1
                  """
 
             QueryType.NEXT_DAY -> query = """
                  SELECT * FROM course 
-                 WHERE day > (strftime('%w', 'now') + 1)
+                 WHERE day > (strftime('%w', 'localtime') + 1)
                  ORDER BY day,strftime('%H:%M', startTime) ASC LIMIT 1
                  """
 

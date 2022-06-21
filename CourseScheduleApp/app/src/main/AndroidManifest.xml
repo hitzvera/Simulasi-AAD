@@ -15,9 +15,7 @@
         android:theme="@style/Theme.CourseSchedule">
         <activity
             android:name=".ui.add.AddCourseActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.add.AddCourseActivity"
+            android:parentActivityName=".ui.list.ListActivity"
             android:exported="false" />
         <activity
             android:name=".ui.detail.DetailActivity"

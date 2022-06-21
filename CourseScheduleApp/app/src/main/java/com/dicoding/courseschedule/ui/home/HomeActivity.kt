@@ -2,6 +2,7 @@ package com.dicoding.courseschedule.ui.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -33,6 +34,7 @@ class HomeActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
         viewModel.getNearestSchedule(queryType).observe(this){
             showTodaySchedule(it)
+            Log.e("CHECK", it?.startTime.toString())
         }
 
     }
@@ -44,10 +46,11 @@ class HomeActivity : AppCompatActivity() {
             val time = String.format(getString(R.string.time_format), dayName, startTime, endTime)
             val remainingTime = timeDifference(day, startTime)
 
+            Log.e("CHECK", "$startTime $endTime")
             val cardHome = findViewById<CardHomeView>(R.id.view_home)
-            cardHome.setCourseName(course.courseName)
-            cardHome.setLecturer(course.lecturer)
-            cardHome.setNote(course.note)
+            cardHome.setCourseName(courseName)
+            cardHome.setLecturer(lecturer)
+            cardHome.setNote(note)
             cardHome.setRemainingTime(remainingTime)
             cardHome.setTime(time)
         }
