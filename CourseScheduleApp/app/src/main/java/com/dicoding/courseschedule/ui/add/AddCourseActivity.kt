@@ -83,13 +83,11 @@ class AddCourseActivity : AppCompatActivity(), TimePickerFragment.DialogTimeList
 
     override fun onDialogTimeSet(tag: String?, hour: Int, minute: Int) {
         if(btnChecker == "startTime"){
-            startTime = "$hour:$minute"
-            if(minute<10) binding.tvStartTime.text = "$hour:0$minute"
-            else binding.tvStartTime.text = startTime
+            startTime = if(minute<10) "$hour:0$minute" else "$hour:$minute"
+            binding.tvStartTime.text = startTime
         } else if(btnChecker == "endTime"){
-            endTime = "$hour:$minute"
-            if(minute<10) binding.tvEndTime.text = "$hour:0$minute"
-            else binding.tvEndTime.text = endTime
+            endTime = if(minute<10) "$hour:0$minute" else "$hour:$minute"
+            binding.tvStartTime.text = endTime
         }
     }
 }

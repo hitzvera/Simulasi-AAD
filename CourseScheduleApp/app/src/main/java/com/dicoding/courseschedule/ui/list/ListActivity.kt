@@ -1,5 +1,6 @@
 package com.dicoding.courseschedule.ui.list
 
+import android.content.ClipData
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -19,6 +20,7 @@ import com.dicoding.courseschedule.paging.CourseAdapter
 import com.dicoding.courseschedule.paging.CourseViewHolder
 import com.dicoding.courseschedule.ui.add.AddCourseActivity
 import com.dicoding.courseschedule.ui.detail.DetailActivity
+import com.dicoding.courseschedule.ui.detail.DetailActivity.Companion.COURSE_ID
 import com.dicoding.courseschedule.ui.setting.SettingsActivity
 import com.dicoding.courseschedule.util.SortType
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -54,26 +56,16 @@ class ListActivity : AppCompatActivity() {
         rvCourse = findViewById(R.id.rv_course)
         rvCourse.layoutManager = LinearLayoutManager(this)
         rvCourse.adapter = courseAdapter
+        val itemTouchHelper = ItemTouchHelper(Callback())
+        itemTouchHelper.attachToRecyclerView(rvCourse)
     }
 
-    companion object {
-        const val COURSE_NAME = "course_name"
-        const val COURSE_DAY = "course_day"
-        const val COURSE_START_TIME = "course_start_time"
-        const val COURSE_END_TIME = "course_end_time"
-        const val COURSE_LECTURER = "course_lecturer"
-        const val COURSE_NOTE = "course_note"
-    }
+
 
     private fun onCourseClick(course: Course) {
         //TODO 8 : Intent and show detailed course
         val detailIntent = Intent(this, DetailActivity::class.java)
-        detailIntent.putExtra(COURSE_NAME, course.courseName)
-        detailIntent.putExtra(COURSE_DAY, course.day)
-        detailIntent.putExtra(COURSE_START_TIME, course.startTime)
-        detailIntent.putExtra(COURSE_END_TIME, course.endTime)
-        detailIntent.putExtra(COURSE_LECTURER, course.lecturer)
-        detailIntent.putExtra(COURSE_NOTE, course.note)
+        detailIntent.putExtra(COURSE_ID, course.id)
         startActivity(detailIntent)
     }
 

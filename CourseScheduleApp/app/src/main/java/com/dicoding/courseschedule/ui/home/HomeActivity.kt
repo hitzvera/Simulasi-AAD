@@ -1,6 +1,9 @@
 package com.dicoding.courseschedule.ui.home
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
+import android.os.Build.VERSION_CODES.M
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -8,33 +11,46 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.ViewModelProvider
 import com.dicoding.courseschedule.R
 import com.dicoding.courseschedule.data.Course
+import com.dicoding.courseschedule.notification.DailyReminder
 import com.dicoding.courseschedule.ui.add.AddCourseActivity
 import com.dicoding.courseschedule.ui.list.ListActivity
 import com.dicoding.courseschedule.ui.setting.SettingsActivity
-import com.dicoding.courseschedule.util.DayName
-import com.dicoding.courseschedule.util.QueryType
-import com.dicoding.courseschedule.util.timeDifference
+import com.dicoding.courseschedule.util.*
 
 //TODO 15 : Write UI test to validate when user tap Add Course (+) Menu, the AddCourseActivity is displayed
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var viewModel: HomeViewModel
     private var queryType = QueryType.CURRENT_DAY
+    private lateinit var sharedPreferences: SharedPreferences
+    var darkTheme: Int = 0
 
     //TODO 5 : Show today schedule in CardHomeView and implement menu action
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         supportActionBar?.title = resources.getString(R.string.today_schedule)
+        sharedPreferences = getSharedPreferences(SHARED_PREFERENCE, Context.MODE_PRIVATE)
+        darkTheme = sharedPreferences.getInt(DARK_THEME, 0)
+        if(darkTheme!=0){
+            updateTheme(darkTheme)
+        }
+        sharedPreferences = getSharedPreferences(NOTIFICATION_PREFERENCE, Context.MODE_PRIVATE)
+        if(sharedPreferences.getBoolean(IS_NOTIFIED, false)){
+            val alarmRecevier = DailyReminder()
+            alarmRecevier.setDailyReminder(this)
+        }
+
 
         val factory = HomeViewModelRepository.createFactory(this)
         viewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
         viewModel.getNearestSchedule(queryType).observe(this){
             showTodaySchedule(it)
-            Log.e("CHECK", it?.startTime.toString())
         }
 
     }
@@ -85,6 +101,12 @@ class HomeActivity : AppCompatActivity() {
         } ?: return super.onOptionsItemSelected(item)
 
         startActivity(intent)
+        return true
+    }
+
+    private fun updateTheme(nightMode: Int): Boolean{
+        AppCompatDelegate.setDefaultNightMode(nightMode)
+        recreate()
         return true
     }
 }

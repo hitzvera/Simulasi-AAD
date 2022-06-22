@@ -13,6 +13,9 @@ import androidx.core.app.NotificationCompat
 import com.dicoding.courseschedule.R
 import com.dicoding.courseschedule.data.Course
 import com.dicoding.courseschedule.data.DataRepository
+import com.dicoding.courseschedule.util.ID_REPEATING
+import com.dicoding.courseschedule.util.NOTIFICATION_CHANNEL_ID
+import com.dicoding.courseschedule.util.NOTIFICATION_CHANNEL_NAME
 import com.dicoding.courseschedule.util.executeThread
 import java.util.*
 
@@ -34,7 +37,7 @@ class DailyReminder : BroadcastReceiver() {
 
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, DailyReminder::class.java)
-        val splitTime = "17:12".split(":")
+        val splitTime = "16:35".split(":")
 
         val calendar = Calendar.getInstance()
         calendar.set(Calendar.HOUR_OF_DAY, splitTime[0].toInt())
@@ -96,7 +99,7 @@ class DailyReminder : BroadcastReceiver() {
             val courseData = String.format(timeString, it.startTime, it.endTime, it.courseName)
             notificationStyle.addLine(courseData)
         }
-        val builder = NotificationCompat.Builder(context, CHANNEL_ID)
+        val builder = NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_notifications)
             .setContentTitle(context.resources.getString(R.string.today_schedule))
             .setStyle(notificationStyle)
@@ -105,15 +108,15 @@ class DailyReminder : BroadcastReceiver() {
 
             /* Create or update. */
             val channel = NotificationChannel(
-                CHANNEL_ID,
-                CHANNEL_NAME,
+                NOTIFICATION_CHANNEL_ID,
+                NOTIFICATION_CHANNEL_NAME,
                 NotificationManager.IMPORTANCE_DEFAULT
             )
 
             channel.enableVibration(true)
             channel.vibrationPattern = longArrayOf(1000, 1000, 1000, 1000, 1000)
 
-            builder.setChannelId(CHANNEL_ID)
+            builder.setChannelId(NOTIFICATION_CHANNEL_ID)
 
             notificationManager.createNotificationChannel(channel)
         }
@@ -123,10 +126,4 @@ class DailyReminder : BroadcastReceiver() {
         notificationManager.notify(ID_REPEATING, notification)
     }
 
-    companion object {
-        const val ID_REPEATING = 101
-        const val CHANNEL_ID = "Channel_1"
-        const val CHANNEL_NAME = "AlarmManager Channel"
-        const val DAILY_REMINDER_TIME = "06:00"
-    }
 }

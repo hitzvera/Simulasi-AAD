@@ -20,7 +20,7 @@ object QueryUtil {
         when (type) {
             QueryType.CURRENT_DAY -> query = """
                  SELECT * FROM course 
-                 WHERE day = (strftime('%w', 'now') + 1)
+                 WHERE day = (strftime('%w', 'now', 'localtime') + 1)
                  AND strftime('%H:%M', startTime) > strftime('%H:%M', 'now', 'localtime')
                  ORDER BY strftime('%H:%M', startTime) ASC LIMIT 1
                  """

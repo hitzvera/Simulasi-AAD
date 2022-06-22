@@ -5,8 +5,10 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.dicoding.courseschedule.R
 import com.dicoding.courseschedule.data.Course
+import com.dicoding.courseschedule.databinding.ActivityDetailBinding
 import com.dicoding.courseschedule.util.DayName.Companion.getByNumber
 
 class DetailActivity : AppCompatActivity() {
@@ -16,13 +18,19 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private lateinit var viewModel: DetailViewModel
+    private lateinit var binding: ActivityDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail)
+        binding = ActivityDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val courseId = intent.getIntExtra(COURSE_ID, 0)
         val factory = DetailViewModelFactory.createFactory(this, courseId)
+        viewModel = ViewModelProvider(this, factory)[DetailViewModel::class.java]
+        viewModel.course.observe(this){
+            showCourseDetail(it)
+        }
 
 
     }
@@ -33,6 +41,12 @@ class DetailActivity : AppCompatActivity() {
             val dayName = getByNumber(day)
             val timeFormat = String.format(timeString, dayName, startTime, endTime)
 
+            binding.apply {
+                tvCourseName.text = courseName
+                tvTime.text = timeFormat
+                tvLecturer.text = lecturer
+                tvNote.text = note
+            }
         }
     }
 
