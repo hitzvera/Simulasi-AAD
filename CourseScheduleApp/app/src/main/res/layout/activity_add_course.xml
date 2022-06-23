@@ -103,7 +103,7 @@
         android:hint="@string/lecturer">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ed_lecturer"
+            android:id="@+id/tv_course_lecturer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLength="255"
@@ -118,7 +118,7 @@
         android:hint="@string/note">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ed_note"
+            android:id="@+id/tv_course_note"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="top"

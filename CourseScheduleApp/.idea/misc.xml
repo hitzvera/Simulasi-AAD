@@ -3,17 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/dicoding/Simulasi AAD/CourseScheduleApp/app/src/main/res/layout/activity_add_course.xml" value="0.42278860569715143" />
-        <entry key="..\:/dicoding/Simulasi AAD/CourseScheduleApp/app/src/main/res/layout/activity_detail.xml" value="0.18802083333333333" />
-        <entry key="..\:/dicoding/Simulasi AAD/CourseScheduleApp/app/src/main/res/layout/activity_home.xml" value="0.18802083333333333" />
-        <entry key="..\:/dicoding/Simulasi AAD/CourseScheduleApp/app/src/main/res/layout/activity_list.xml" value="0.2" />
-        <entry key="..\:/dicoding/Simulasi AAD/CourseScheduleApp/app/src/main/res/layout/card_home_view.xml" value="0.18802083333333333" />
-        <entry key="..\:/dicoding/Simulasi AAD/CourseScheduleApp/app/src/main/res/layout/item_course.xml" value="0.18802083333333333" />
-        <entry key="..\:/dicoding/Simulasi AAD/CourseScheduleApp/app/src/main/res/menu/menu_add.xml" value="0.36666666666666664" />
-        <entry key="..\:/dicoding/Simulasi AAD/CourseScheduleApp/app/src/main/res/menu/menu_home.xml" value="0.18802083333333333" />
-        <entry key="..\:/dicoding/Simulasi AAD/CourseScheduleApp/app/src/main/res/menu/menu_list.xml" value="0.18802083333333333" />
-        <entry key="..\:/dicoding/Simulasi AAD/CourseScheduleApp/app/src/main/res/menu/sort_course.xml" value="0.18802083333333333" />
-        <entry key="..\:/dicoding/Simulasi AAD/CourseScheduleApp/app/src/main/res/xml/root_preferences.xml" value="0.18802083333333333" />
+        <entry key="..\:/AndroidDeveloper/Course Schedule/CourseScheduleApp/app/src/main/res/layout/activity_add_course.xml" value="0.16875" />
+        <entry key="..\:/AndroidDeveloper/Course Schedule/CourseScheduleApp/app/src/main/res/layout/activity_detail.xml" value="0.16875" />
       </map>
     </option>
   </component>

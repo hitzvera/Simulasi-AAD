@@ -68,13 +68,10 @@ class AddCourseActivity : AppCompatActivity(), TimePickerFragment.DialogTimeList
         return when (item.itemId) {
             R.id.action_insert -> {
                 val courseName = binding.tvCourseName.text?.trim().toString()
-                val lecturer = binding.edLecturer.text?.trim().toString()
-                val note = binding.edNote.text?.trim().toString()
+                val lecturer = binding.tvCourseLecturer.text?.trim().toString()
+                val note = binding.tvCourseNote.text?.trim().toString()
                 viewModel.insertCourse(courseName, day, startTime, endTime, lecturer, note)
-
-//                val courseName = binding.tvcour
-//                viewModel.insertCourse()
-                Log.e("CHECK", "$courseName $day $lecturer $note  $startTime $endTime")
+                finish()
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -83,10 +80,26 @@ class AddCourseActivity : AppCompatActivity(), TimePickerFragment.DialogTimeList
 
     override fun onDialogTimeSet(tag: String?, hour: Int, minute: Int) {
         if(btnChecker == "startTime"){
-            startTime = if(minute<10) "$hour:0$minute" else "$hour:$minute"
+            startTime = if(minute<10 && hour<10) "0$hour:0$minute"
+            else if(minute<10) {
+                "$hour:0$minute"
+            }
+            else if(hour<10){
+                "$hour:0$minute"
+            } else {
+                "$hour:$minute"
+            }
             binding.tvStartTime.text = startTime
         } else if(btnChecker == "endTime"){
-            endTime = if(minute<10) "$hour:0$minute" else "$hour:$minute"
+            endTime = if(minute<10 && hour<10) "0$hour:0$minute"
+            else if(minute<10) {
+                "$hour:0$minute"
+            }
+            else if(hour<10){
+                "$hour:0$minute"
+            } else {
+                "$hour:$minute"
+            }
             binding.tvStartTime.text = endTime
         }
     }
